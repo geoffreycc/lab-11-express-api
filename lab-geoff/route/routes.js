@@ -9,7 +9,7 @@ module.exports = (router) => {
     // schemaName, id
     //stuff
   });
-  router.put('/movies', (req, res) => {
+  router.post('/movies', (req, res) => {
     let movie = new Movie(req.body.title, req.body.dir, req.body.rating);
     storage.createItem('movies', movie);
   });
