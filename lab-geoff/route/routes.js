@@ -2,6 +2,7 @@
 
 module.exports = (router) => {
   router.get('/movies', (req, res) => {
+    console.log('get request');
     // schemaName, id
     //stuff
   });
