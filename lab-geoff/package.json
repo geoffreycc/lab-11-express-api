@@ -11,5 +11,11 @@
     "start": "node server.js"
   },
   "author": "geoff-cox",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
