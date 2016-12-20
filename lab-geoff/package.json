@@ -1,0 +1,15 @@
+{
+  "name": "lab-11-geoff",
+  "version": "1.0.0",
+  "description": "single resource express api",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "author": "geoff-cox",
+  "license": "ISC"
+}
