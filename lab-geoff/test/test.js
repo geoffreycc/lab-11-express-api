@@ -52,4 +52,18 @@ describe('testing the routes for movies api', function() {
     //   });
     // });
   });
+  describe('testing DELETE request', function() {
+    it('should remove a movie from storage', function(done) {
+      request.del(`http://localhost:3000/api/movies/${movie.id}`)
+      .end((err, res) => {
+        // if(err) return done(err);
+        if(err) {
+          console.log('error happened after request.del()');
+          return done(err);
+        }
+        expect(res.status).to.equal(204);
+        done();
+      });
+    });
+  });
 });

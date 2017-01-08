@@ -18,16 +18,27 @@ module.exports = (router) => {
     }
     res.sendStatus(400);
   });
+
   router.post('/api/movies', (req, res) => {
     if(!req.body) return res.sendStatus(400);
     let movie = new Movie(req.body.title, req.body.dir, req.body.rating);
     storage.createItem('movies', movie);
     res.json(movie);
   });
-  router.delete('/movies', (req, res) => {
-    storage.deleteItem('movies', req.query.id)
-    .then(() => {
+
+  router.delete('/api/movies/:id', (req, res) => {
+    console.log('delete request');
+    if(!req.params.id) return res.sendStatus(400);
+    storage.deleteItem('movies', req.params.id)
+    .then(movie => {
+      console.log('deleted movie');
+      console.log(movie);
       res.sendStatus(204);
+    })
+    .catch(err => {
+      console.log('could not find movie');
+      console.error(err);
+      res.sendStatus(404);
     });
   });
   // router.put('/movies', (req, res) => {

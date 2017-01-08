@@ -29,13 +29,16 @@ exports.fetchItem = function(schemaName, id) {
   });
 };
 exports.deleteItem = function(schemaName, id) {
-  if (!schemaName) return Promise.reject(new Error('need schemaName'));
-  if (!id) return Promise.reject(new Error('need id'));
-  return fs.unlinkProm(`${__dirname}/../data/${schemaName}/${id}.json`)
+  // if (!schemaName) return Promise.reject(new Error('need schemaName'));
+  // console.log(schemaName + ' is the schemaName');
+  // if (!id) return Promise.reject(new Error('need id'));
+  // console.log(id + ' is the id');
+  return fs.unlinkProm(`${__dirname}/../data/${schemaName}/${id}.json`) //try del
   .then(() => {
     console.log('file deleted');
   })
   .catch(err => {
+    console.log('error caught in exports.delete item');
     Promise.reject(err);
   });
 };
