@@ -39,26 +39,32 @@ describe('testing the routes for movies api', function() {
       });
     });
     // it('should return 400 for no id', function(done) {
-    //   request.get('http://localhost:3000/movies?id=')
+    //   request.get('http://localhost:3000/movies/')
     //   .end((err, res) => {
     //     expect(res.status).to.equal(400);
     //     done();
     //   });
     // });
-    // it('should return 404 for not found id', function(done) {
-    //   request.get('http://localhost:3000/movies?id=10')
-    //   .end((err, res) => {
-    //     expect(res.status).to.equal(404);
-    //     done();
-    //   });
-    // });
-    // it('should return 404 for unregister routes', function(done) {
-    //   request.get('http://localhost:3000/test')
-    //   .end((err, res) => {
-    //     expect(res.status).to.equal(404);
-    //     done();
-    //   });
-    // });
+    it('should return 404 for not found id', function(done) {
+      request.get('http://localhost:3000/movies/10')
+      .end((err, res) => {
+        expect(res.status).to.equal(404);
+        done();
+      });
+    });
+  });
+  describe('testing PUT request', function() {
+    it('should update an entry', function(done) {
+      request.put(`http://localhost:3000/api/movies/${movie.id}`)
+      .send({title: 'newTestTitle', dir: 'newTestDir', rating: 'newTestRating'})
+      .end((err, res) => {
+        if(err) return done(err);
+        console.log('put response body');
+        console.log(res.body);
+        expect(res.status).to.equal(200);
+        done();
+      });
+    });
   });
   describe('testing DELETE request', function() {
     it('should remove a movie from storage', function(done) {

@@ -19,6 +19,12 @@ module.exports = (router) => {
     res.sendStatus(400);
   });
 
+  router.put('/api/movies/:id', (req, res) => {
+    let movie = new Movie(req.body.title, req.body.dir, req.body.rating, req.params.id);
+    storage.createItem('movies', movie);
+    res.json(movie);
+  });
+
   router.post('/api/movies', (req, res) => {
     // if(!req.body) return res.sendStatus(400);
     let movie = new Movie(req.body.title, req.body.dir, req.body.rating);
@@ -30,9 +36,8 @@ module.exports = (router) => {
     console.log('delete request');
     if(!req.params.id) return res.sendStatus(400);
     storage.deleteItem('movies', req.params.id)
-    .then(movie => {
+    .then( () => {
       console.log('deleted movie');
-      console.log(movie);
       res.sendStatus(204);
     })
     .catch(err => {
