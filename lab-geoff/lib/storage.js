@@ -2,7 +2,7 @@
 let Promise = require('bluebird');
 let fs = Promise.promisifyAll(require('fs'), {suffix: 'Prom'});
 
-exports.createItem = function(schemaName, item, next) {
+exports.createItem = function(schemaName, item) {
   return new Promise((resolve, reject) => {
     if (!schemaName) return reject(new Error('need schemaName'));
     if (!item) return reject(new Error('need item'));

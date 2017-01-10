@@ -18,6 +18,14 @@ describe('testing the routes for movies api', function() {
         done();
       });
     });
+    it('should return 400 for no a request with no body', function(done) {
+      request.post('http://localhost:3000/api/movies')
+      .send()
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        done();
+      });
+    });
   });
   describe('testing GET request', function() {
     it('should get a movie from storage', function(done) {

@@ -20,7 +20,7 @@ module.exports = (router) => {
   });
 
   router.post('/api/movies', (req, res) => {
-    if(!req.body) return res.sendStatus(400);
+    // if(!req.body) return res.sendStatus(400);
     let movie = new Movie(req.body.title, req.body.dir, req.body.rating);
     storage.createItem('movies', movie);
     res.json(movie);
